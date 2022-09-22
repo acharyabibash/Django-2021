@@ -52,3 +52,4 @@ See the full course here: https://dennisivy.teachable.com/p/django-beginners-cou
 
 # Inside my Computer
 * This project is saved inside C:\Users\Dell\Django-2021-Master directory  in my local computer <br/>
+* Postman is useful for API testing <br/>
