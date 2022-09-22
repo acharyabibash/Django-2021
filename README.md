@@ -50,3 +50,5 @@ See the full course here: https://dennisivy.teachable.com/p/django-beginners-cou
 # User Inbox
 <img src="./resources/images/Devsearch Inbox.jpg">  
 
+# Inside my Computer
+* This project is saved inside C:\Users\Dell\Django-2021-Master directory  in my local computer <br/>
