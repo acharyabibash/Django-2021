@@ -26,3 +26,21 @@
 //             }
 //         })
 // })
+
+
+
+
+let form = document.getElementById('login-form')
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    
+    let formData = {
+        'username': form.username.value,
+        'password': form.password.value
+    }
+
+    console.log('FORM DATA:', formData)
+
+
+})
