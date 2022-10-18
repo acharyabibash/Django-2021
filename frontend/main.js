@@ -109,6 +109,7 @@ let getProjects = () => {
 
 let buildProjects = (projects) => {
     let projectsWrapper = document.getElementById('projects--wrapper')
+    projectsWrapper.innerHTML = ''
 
     for(let i=0; projects.length > i ; i++){
         let project = projects[i]
@@ -142,9 +143,27 @@ let addVoteEvents = () => {
     for(let i=0; voteBtns.length > i; i++){
 
         voteBtns[i].addEventListener('click', (e) => {
+            //let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY2MTc4Njk3LCJqdGkiOiJmZWY3MWM0MGRlNzY0NzMyYTg0MzIzMmVmMGY4MzkzYSIsInVzZXJfaWQiOjIxfQ._lFgl5wPhP_72NaDJQitDNrURUxsfG9vIzbPCTOhiYs'
+            let token = localStorage.getItem('token')
+            console.log('TOKEN:', token)
             let vote = e.target.dataset.vote    
             let project = e.target.dataset.project
-            console.log('PROJECT:', project, 'VOTE:', vote)       
+            
+            fetch(`http://127.0.0.1:8000/api/projects/${project}/vote/`,{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                body:JSON.stringify({'value':vote})
+            })
+                .then(response => response.json())
+                .then(data => {
+                console.log('Success:', data)
+                getProjects()
+                })
+
+
         })
     }
 }
