@@ -119,8 +119,8 @@ let buildProjects = (projects) => {
                     <div>
                         <div class="card--header">
                         <h3>${project.title}</h3>
-                        <strong class="vote--option" >&#43;</strong>
-                        <strong class="vote--option" >&#8722;</strong>
+                        <strong class="vote--option" data-vote="up" data-project="${project.id}" >&#43;</strong>
+                        <strong class="vote--option" data-vote="down" data-project="${project.id}" >&#8722;</strong>
                         </div>
                         <i>${project.vote_ratio}% Positive feedback </i>
                         <p>${project.description.substring(0,150)}</p>
@@ -130,6 +130,25 @@ let buildProjects = (projects) => {
         `
         projectsWrapper.innerHTML += projectCard
     }
+
+    addVoteEvents()
+
+    //Add an Listener
 }
 
+let addVoteEvents = () => {
+    let voteBtns = document.getElementsByClassName('vote--option')
+    
+    for(let i=0; voteBtns.length > i; i++){
+
+        voteBtns[i].addEventListener('click', (e) => {
+            let vote = e.target.dataset.vote    
+            let project = e.target.dataset.project
+            console.log('PROJECT:', project, 'VOTE:', vote)       
+        })
+    }
+}
+
+
 getProjects()
+
