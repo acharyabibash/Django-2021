@@ -40,7 +40,23 @@ form.addEventListener('submit', (e) => {
         'password': form.password.value
     }
 
-    console.log('FORM DATA:', formData)
+    fetch('http://127.0.0.1:8000/api/users/token/',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify(formData)  
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('DATA:', data.access)
+            if (data.access){
+                localStorage.setItem('token',data.access)
+                window.location = 'file:///C:/Users/Dell/Django-2021-master/frontend/projects-list.html'
+            } else{
+                alert('Username OR password did not work')     
+            }
+        })
 
 
 })
